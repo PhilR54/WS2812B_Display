@@ -5,87 +5,87 @@ void count(uint8_t no, bool countUp) {
   uint32_t ms = 0;
   int32_t msSinceStart = 0;
   uint32_t startTime = millis();
-  
+
   Serial.print("Counting: ");
   while (true) {
     ms = millis();
     msSinceStart = ms - startTime;
 
-    if(! countUp)
-      msSinceStart = ((no +1) * 1000) - msSinceStart;
+    if (! countUp)
+      msSinceStart = ((no + 1) * 1000) - msSinceStart;
 
-    if(msSinceStart < 0){ //Exit Condition for counting down
+    if (msSinceStart < 0) { //Exit Condition for counting down
       return;
     }
     else if (msSinceStart < 1000) {
       Serial.print(" 0 ");
       createFrame(ms, false);
-      drawZero();
+      drawBigZero();
     }
     else if (msSinceStart < 2000) {
       if (no == 0)
         return;
       Serial.print(" 1 ");
       createFrame(ms, false);
-      drawOne();
+      drawBigOne();
     }
     else if (msSinceStart < 3000) {
       if (no == 1)
         return;
       Serial.print(" 2 ");
       createFrame(ms, false);
-      drawTwo();
+      drawBigTwo();
     }
     else if (msSinceStart < 4000) {
       if (no == 2)
         return;
       Serial.print(" 3 ");
       createFrame(ms, false);
-      drawThree();
+      drawBigThree();
     }
     else if (msSinceStart < 5000) {
       if (no == 3)
         return;
       Serial.print(" 4 ");
       createFrame(ms, false);
-      drawFour();
+      drawBigFour();
     }
     else if (msSinceStart < 6000) {
       if (no == 4)
         return;
       Serial.print(" 5 ");
       createFrame(ms, false);
-      drawFive();
+      drawBigFive();
     }
     else if (msSinceStart < 7000) {
       if (no == 5)
         return;
       Serial.print(" 6 ");
       createFrame(ms, false);
-      drawSix();
+      drawBigSix();
     }
     else if (msSinceStart < 8000) {
       if (no == 6)
         return;
       Serial.print(" 7 ");
       createFrame(ms, false);
-      drawSeven();
+      drawBigSeven();
     }
     else if (msSinceStart < 9000) {
       if (no == 7)
         return;
       Serial.print(" 8 ");
       createFrame(ms, false);
-      drawEight();
+      drawBigEight();
     }
     else if (msSinceStart < 10000) {
       if (no == 8)
         return;
       Serial.print(" 9 ");
       createFrame(ms, false);
-      drawNine();
+      drawBigNine();
     }
-    else if (countUp){ //Exit conditon for counting up
+    else if (countUp) { //Exit conditon for counting up
       return;
     }
     FastLED.show();
@@ -102,7 +102,9 @@ void drawSquare(uint8_t x, uint8_t y) {
 }
 
 
-void drawZero() {
+
+
+void drawBigZero() {
   Serial.println("Showing 0...");
   drawSquare(3, 1);
   drawSquare(4, 1);
@@ -122,7 +124,7 @@ void drawZero() {
   drawSquare(5, 7);
 }
 
-void drawOne() {
+void drawBigOne() {
   Serial.println("Showing 1...");
   drawSquare(4, 1);
   drawSquare(6, 2);
@@ -139,7 +141,7 @@ void drawOne() {
   drawSquare(6, 7);
 }
 
-void drawTwo() {
+void drawBigTwo() {
   Serial.println("Showing 2...");
   drawSquare(5, 1);
   drawSquare(4, 1);
@@ -157,7 +159,7 @@ void drawTwo() {
   drawSquare(2, 7);
 }
 
-void drawThree() {
+void drawBigThree() {
   Serial.println("Showing 3...");
   drawSquare(5, 1);
   drawSquare(4, 1);
@@ -175,7 +177,7 @@ void drawThree() {
   drawSquare(3, 7);
 }
 
-void drawFour() {
+void drawBigFour() {
   Serial.println("Showing 4...");
   drawSquare(6, 1);
   drawSquare(6, 2);
@@ -192,7 +194,7 @@ void drawFour() {
   drawSquare(4, 7);
 }
 
-void drawFive() {
+void drawBigFive() {
   Serial.println("Showing 5...");
   drawSquare(6, 1);
   drawSquare(5, 1);
@@ -213,7 +215,7 @@ void drawFive() {
   drawSquare(3, 7);
 }
 
-void drawSix() {
+void drawBigSix() {
   Serial.println("Showing 6...");
   drawSquare(5, 1);
   drawSquare(4, 1);
@@ -233,21 +235,21 @@ void drawSix() {
   drawSquare(4, 7);
   drawSquare(3, 7);
 }
-void drawSeven() {
+void drawBigSeven() {
   Serial.println("Showing 7...");
   drawSquare(6, 1);
-    drawSquare(5, 1);
-      drawSquare(4, 1);
-        drawSquare(3, 1);
-          drawSquare(2, 1);
-            drawSquare(2, 2);
-              drawSquare(3, 3);
-                drawSquare(4, 4);
-                  drawSquare(4, 5);
-                    drawSquare(4, 6);
-                      drawSquare(4, 7);
+  drawSquare(5, 1);
+  drawSquare(4, 1);
+  drawSquare(3, 1);
+  drawSquare(2, 1);
+  drawSquare(2, 2);
+  drawSquare(3, 3);
+  drawSquare(4, 4);
+  drawSquare(4, 5);
+  drawSquare(4, 6);
+  drawSquare(4, 7);
 }
-void drawEight() {
+void drawBigEight() {
   Serial.println("Showing 8...");
   drawSquare(5, 1);
   drawSquare(4, 1);
@@ -267,7 +269,7 @@ void drawEight() {
   drawSquare(4, 7);
   drawSquare(3, 7);
 }
-void drawNine() {
+void drawBigNine() {
   Serial.println("Showing 9...");
   drawSquare(5, 1);
   drawSquare(4, 1);
