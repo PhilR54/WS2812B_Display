@@ -38,6 +38,26 @@ void setup() {
   Serial.println(" Hellooooo");
   startTime = millis() + 1000;
 
+  drawSmallZero(5);
+  FastLED.show();
+  delay(2500);
+    drawSmallZero(6);
+  FastLED.show();
+  delay(2500);
+
+  drawSmallZero(1);
+  FastLED.show();
+  delay(1000);
+  drawSmallZero(2);
+  FastLED.show();
+  delay(1000);
+  drawSmallZero(3);
+  FastLED.show();
+  delay(1000);
+  drawSmallZero(4);
+  FastLED.show();
+  delay(2500);
+
   count(9, true); //Count up
-  count(8, false); //Count down
+  count(9, false); //Count down
 }

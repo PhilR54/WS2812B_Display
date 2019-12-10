@@ -1,5 +1,5 @@
 
-//#define FONT_NUMER_STYLE_STND
+#define FONT_NUMER_STYLE_STND_
 
 void count(uint8_t no, bool countUp) {
   bool complete = false;
@@ -7,13 +7,20 @@ void count(uint8_t no, bool countUp) {
   int32_t msSinceStart = 0;
   uint32_t startTime = millis();
 
-  Serial.print("Counting: ");
+  Serial.print("\n Counting ");
+  if (countUp)
+    Serial.print("Up: ");
+  else
+    Serial.print("Down: ");
+
   while (true) {
     ms = millis();
     msSinceStart = ms - startTime;
 
-    if (! countUp)
+    if (! countUp) {
       msSinceStart = ((no + 1) * 1000) - msSinceStart;
+      Serial.println(msSinceStart);
+    }
 
     if (msSinceStart < 0) { //Exit Condition for counting down
       return;
@@ -465,14 +472,14 @@ void drawBigSix() {
   drawSquare(6, 5);
   drawSquare(3, 5);
   drawSquare(2, 5);
-    drawSquare(7, 6);
+  drawSquare(7, 6);
   drawSquare(6, 6);
   drawSquare(3, 6);
   drawSquare(2, 6);
   drawSquare(6, 7);
-    drawSquare(5, 7);
-      drawSquare(4, 7);
-        drawSquare(3, 7);
+  drawSquare(5, 7);
+  drawSquare(4, 7);
+  drawSquare(3, 7);
 }
 void drawBigSeven() {
   drawSquare(7, 1);
@@ -514,7 +521,7 @@ void drawBigEight() {
   drawSquare(5, 4);
   drawSquare(4, 4);
   drawSquare(3, 4);
-drawSquare(7, 5);
+  drawSquare(7, 5);
   drawSquare(6, 5);
   drawSquare(3, 5);
   drawSquare(2, 5);
@@ -532,7 +539,6 @@ void drawBigNine() {
   drawSquare(5, 1);
   drawSquare(4, 1);
   drawSquare(3, 1);
-  
   drawSquare(7, 2);
   drawSquare(6, 2);
   drawSquare(3, 2);
@@ -555,3 +561,293 @@ void drawBigNine() {
   drawSquare(4, 7);
 }
 #endif
+
+// Small Numbers
+
+void drawPixel(uint8_t x, uint8_t y, uint8_t pos) {
+  int8_t offsetX = 0;
+  int8_t offsetY = 0;
+
+  if(pos == 1){       // Top Left
+    offsetX = 7;
+    offsetY = 0;
+  }
+  else if(pos == 2){  // Top Right
+    offsetX = -1;
+    offsetY = 0;
+  }
+  else if(pos == 3){  // Bottom Left
+    offsetX = 7;
+    offsetY = 8;
+  }
+  else if(pos == 4){  // Bottom Right
+    offsetX = -1;
+    offsetY = 8;
+  }
+  else if(pos == 5){  // Mid Left
+    offsetX = 7;
+    offsetY = 4;
+  }
+  else if(pos == 6){  // Mid Right
+    offsetX = -1;
+    offsetY = 4;
+  }
+
+  leds[ XY( x + offsetX, y + offsetY)] = CHSV( 0, 0, 255);
+}
+
+void drawSmallZero(uint8_t pos) {
+  drawPixel(3, 1, pos);
+  drawPixel(4, 1, pos);
+  drawPixel(5, 1, pos);
+  drawPixel(6, 1, pos);
+  drawPixel(2, 2, pos);
+  drawPixel(3, 2, pos);
+  drawPixel(6, 2, pos);
+  drawPixel(7, 2, pos);
+  drawPixel(2, 3, pos);
+  drawPixel(3, 3, pos);
+  drawPixel(6, 3, pos);
+  drawPixel(7, 3, pos);
+  drawPixel(2, 4, pos);
+  drawPixel(3, 4, pos);
+  drawPixel(6, 4, pos);
+  drawPixel(7, 4, pos);
+  drawPixel(2, 5, pos);
+  drawPixel(3, 5, pos);
+  drawPixel(6, 5, pos);
+  drawPixel(7, 5, pos);
+  drawPixel(2, 6, pos);
+  drawPixel(3, 6, pos);
+  drawPixel(6, 6, pos);
+  drawPixel(7, 6, pos);
+  drawPixel(3, 7, pos);
+  drawPixel(4, 7, pos);
+  drawPixel(5, 7, pos);
+  drawPixel(6, 7, pos);
+}
+
+void drawSmallOne(uint8_t pos) {
+  drawPixel(4, 1, pos);
+  drawPixel(5, 1, pos);
+  drawPixel(4, 2, pos);
+  drawPixel(5, 2, pos);
+  drawPixel(6, 2, pos);
+  drawPixel(4, 3, pos);
+  drawPixel(5, 3, pos);
+  drawPixel(4, 4, pos);
+  drawPixel(5, 4, pos);
+  drawPixel(4, 5, pos);
+  drawPixel(5, 5, pos);
+  drawPixel(4, 6, pos);
+  drawPixel(5, 6, pos);
+  drawPixel(4, 7, pos);
+  drawPixel(5, 7, pos);
+}
+
+void drawSmallTwo(uint8_t pos) {
+  drawPixel(6, 1, pos);
+  drawPixel(5, 1, pos);
+  drawPixel(4, 1, pos);
+  drawPixel(3, 1, pos);
+  drawPixel(7, 2, pos);
+  drawPixel(6, 2, pos);
+  drawPixel(3, 2, pos);
+  drawPixel(2, 2, pos);
+  drawPixel(3, 3, pos);
+  drawPixel(2, 3, pos);
+  drawPixel(5, 4, pos);
+  drawPixel(4, 4, pos);
+  drawPixel(3, 4, pos);
+  drawPixel(6, 5, pos);
+  drawPixel(5, 5, pos);
+  drawPixel(7, 6, pos);
+  drawPixel(6, 6, pos);
+  drawPixel(7, 7, pos);
+  drawPixel(6, 7, pos);
+  drawPixel(5, 7, pos);
+  drawPixel(4, 7, pos);
+  drawPixel(3, 7, pos);
+  drawPixel(2, 7, pos);
+}
+
+void drawSmallThree(uint8_t pos) {
+  drawPixel(6, 1, pos);
+  drawPixel(5, 1, pos);
+  drawPixel(4, 1, pos);
+  drawPixel(3, 1, pos);
+  drawPixel(7, 2, pos);
+  drawPixel(6, 2, pos);
+  drawPixel(3, 2, pos);
+  drawPixel(2, 2, pos);
+  drawPixel(3, 3, pos);
+  drawPixel(2, 3, pos);
+  drawPixel(5, 4, pos);
+  drawPixel(4, 4, pos);
+  drawPixel(3, 4, pos);
+  drawPixel(3, 5, pos);
+  drawPixel(2, 5, pos);
+  drawPixel(3, 6, pos);
+  drawPixel(2, 6, pos);
+  drawPixel(7, 6, pos);
+  drawPixel(6, 6, pos);
+  drawPixel(6, 7, pos);
+  drawPixel(5, 7, pos);
+  drawPixel(4, 7, pos);
+  drawPixel(3, 7, pos);
+}
+
+void drawSmallFour(uint8_t pos) {
+  drawPixel(4, 1, pos);
+  drawPixel(3, 1, pos);
+  drawPixel(5, 2, pos);
+  drawPixel(4, 2, pos);
+  drawPixel(3, 2, pos);
+  drawPixel(6, 3, pos);
+  drawPixel(4, 3, pos);
+  drawPixel(3, 3, pos);
+  drawPixel(3, 6, pos);
+  drawPixel(7, 4, pos);
+  drawPixel(4, 4, pos);
+  drawPixel(3, 4, pos);
+  drawPixel(7, 5, pos);
+  drawPixel(6, 5, pos);
+  drawPixel(5, 5, pos);
+  drawPixel(4, 5, pos);
+  drawPixel(3, 5, pos);
+  drawPixel(2, 5, pos);
+  drawPixel(4, 6, pos);
+  drawPixel(3, 6, pos);
+  drawPixel(4, 7, pos);
+  drawPixel(3, 7, pos);
+}
+
+void drawSmallFive(uint8_t pos) {
+  drawPixel(3, 1, pos);
+  drawPixel(4, 1, pos);
+  drawPixel(5, 1, pos);
+  drawPixel(6, 1, pos);
+  drawPixel(7, 1, pos);
+  drawPixel(7, 2, pos);
+  drawPixel(6, 2, pos);
+  drawPixel(7, 3, pos);
+  drawPixel(6, 3, pos);
+  drawPixel(7, 4, pos);
+  drawPixel(6, 4, pos);
+  drawPixel(5, 4, pos);
+  drawPixel(4, 4, pos);
+  drawPixel(4, 5, pos);
+  drawPixel(3, 5, pos);
+  drawPixel(4, 6, pos);
+  drawPixel(3, 6, pos);
+  drawPixel(7, 7, pos);
+  drawPixel(6, 7, pos);
+  drawPixel(5, 7, pos);
+  drawPixel(4, 7, pos);
+}
+
+void drawSmallSix(uint8_t pos) {
+  drawPixel(5, 1, pos);
+  drawPixel(4, 1, pos);
+  drawPixel(3, 1, pos);
+  drawPixel(6, 2, pos);
+  drawPixel(5, 2, pos);
+  drawPixel(6, 3, pos);
+  drawPixel(7, 3, pos);
+  drawPixel(7, 4, pos);
+  drawPixel(6, 4, pos);
+  drawPixel(5, 4, pos);
+  drawPixel(4, 4, pos);
+  drawPixel(3, 4, pos);
+  drawPixel(7, 5, pos);
+  drawPixel(6, 5, pos);
+  drawPixel(3, 5, pos);
+  drawPixel(2, 5, pos);
+  drawPixel(7, 6, pos);
+  drawPixel(6, 6, pos);
+  drawPixel(3, 6, pos);
+  drawPixel(2, 6, pos);
+  drawPixel(6, 7, pos);
+  drawPixel(5, 7, pos);
+  drawPixel(4, 7, pos);
+  drawPixel(3, 7, pos);
+}
+void drawSmallSeven(uint8_t pos) {
+  drawPixel(7, 1, pos);
+  drawPixel(6, 1, pos);
+  drawPixel(5, 1, pos);
+  drawPixel(4, 1, pos);
+  drawPixel(3, 1, pos);
+  drawPixel(2, 1, pos);
+  drawPixel(3, 2, pos);
+  drawPixel(2, 2, pos);
+  drawPixel(4, 3, pos);
+  drawPixel(3, 3, pos);
+  drawPixel(4, 4, pos);
+  drawPixel(3, 4, pos);
+  drawPixel(6, 5, pos);
+  drawPixel(5, 5, pos);
+  drawPixel(4, 5, pos);
+  drawPixel(6, 6, pos);
+  drawPixel(5, 6, pos);
+  drawPixel(4, 6, pos);
+  drawPixel(6, 7, pos);
+  drawPixel(5, 7, pos);
+  drawPixel(4, 7, pos);
+}
+void drawSmallEight(uint8_t pos) {
+  drawPixel(6, 1, pos);
+  drawPixel(5, 1, pos);
+  drawPixel(4, 1, pos);
+  drawPixel(3, 1, pos);
+  drawPixel(7, 2, pos);
+  drawPixel(6, 2, pos);
+  drawPixel(3, 2, pos);
+  drawPixel(2, 2, pos);
+  drawPixel(7, 3, pos);
+  drawPixel(6, 3, pos);
+  drawPixel(3, 3, pos);
+  drawPixel(2, 3, pos);
+  drawPixel(6, 4, pos);
+  drawPixel(5, 4, pos);
+  drawPixel(4, 4, pos);
+  drawPixel(3, 4, pos);
+  drawPixel(7, 5, pos);
+  drawPixel(6, 5, pos);
+  drawPixel(3, 5, pos);
+  drawPixel(2, 5, pos);
+  drawPixel(7, 6, pos);
+  drawPixel(6, 6, pos);
+  drawPixel(3, 6, pos);
+  drawPixel(2, 6, pos);
+  drawPixel(6, 7, pos);
+  drawPixel(5, 7, pos);
+  drawPixel(4, 7, pos);
+  drawPixel(3, 7, pos);
+}
+void drawSmallNine(uint8_t pos) {
+  drawPixel(6, 1, pos);
+  drawPixel(5, 1, pos);
+  drawPixel(4, 1, pos);
+  drawPixel(3, 1, pos);
+  drawPixel(7, 2, pos);
+  drawPixel(6, 2, pos);
+  drawPixel(3, 2, pos);
+  drawPixel(2, 2, pos);
+  drawPixel(7, 3, pos);
+  drawPixel(6, 3, pos);
+  drawPixel(3, 3, pos);
+  drawPixel(2, 3, pos);
+  drawPixel(6, 4, pos);
+  drawPixel(5, 4, pos);
+  drawPixel(4, 4, pos);
+  drawPixel(3, 4, pos);
+  drawPixel(2, 4, pos);
+  drawPixel(3, 5, pos);
+  drawPixel(2, 5, pos);
+  drawPixel(4, 6, pos);
+  drawPixel(3, 6, pos);
+  drawPixel(6, 7, pos);
+  drawPixel(5, 7, pos);
+  drawPixel(4, 7, pos);
+}
