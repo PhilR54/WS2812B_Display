@@ -1,4 +1,4 @@
-# WS2812B_Display - Phil Renouf
+# WS2812B_Display - Phil Renouf - WIP
 
 Source code for controlling a 16x16 LED matrix based on WS2811 chipset.
 
