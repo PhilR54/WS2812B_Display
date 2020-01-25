@@ -5,7 +5,7 @@ Source code for controlling a 16x16 LED matrix based on WS2811 chipset.
 ### Features
 * Counters:
   * Countdown (n -> 0 (with n <10) ) - Large numbers with animated background 
-  * Count-up (0 -> 0  (with n<10) ) - Large numbers with animated background
+  * Count-up (0 -> 10  (with n<10) ) - Large numbers with animated background
  
  * Display Numbers
    * Big Numbers 
